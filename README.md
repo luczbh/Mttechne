@@ -30,11 +30,11 @@ Os dados das tabelas que não fazem parte do domínio (clientes/produtos/vendedo
 
 Arquitetura proposta como sendo a ideal para resolver o requisito.
 
-![Proposta](https://github.com/luczbh/Mttechne/blob/main/ArqImages/Arquitetura%20Proposta.png)
+![Proposta](https://github.com/luczbh/Mttechne/blob/main/ArqImages/ArqProposta.png)
 
 
 Arquitetura utilizada para fins de prova de conceito
-![Implementada]([https://github.com/luczbh/Mttechne/blob/main/ArqImages/Arquitetura%20Proposta.png](https://github.com/luczbh/Mttechne/blob/main/ArqImages/Arquitetura%20Implementada.png))
+![Implementada](https://github.com/luczbh/Mttechne/blob/main/ArqImages/ArqImplementada.png)
 
 
 ## Outras tecnologias que poderiam ser usadas
