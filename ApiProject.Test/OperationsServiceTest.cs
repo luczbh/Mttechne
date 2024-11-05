@@ -126,7 +126,31 @@ namespace ApiProject.Test
         {
             var operationDate = DateTime.Now;
 
-            CreateOperation(1, 1, null, operationDate, EOperationType.Credit);
+            CreateOperation(1, 1, 1, operationDate, EOperationType.Credit, 10);
+
+            var svc = new OperationService(Log.Object, Repository);
+
+            var res = await svc.AddOperationAsync(new OperationModel
+            {
+                ProductId = 1,
+                SellerId = 1,
+                ClientId = 1,
+                Value = 10,
+                OperationType = EOperationType.Credit,
+                OperationDate = operationDate,
+            });
+
+            Log.Verify(_ => _.Error("Operation with same values already exists."));
+
+            Assert.IsFalse(res);
+        }
+
+        [Fact]
+        public async Task Add_Operation_Whitout_Client_Exists()
+        {
+            var operationDate = DateTime.Now;
+
+            CreateOperation(1, 1, null, operationDate, EOperationType.Credit, 10);
 
             var svc = new OperationService(Log.Object, Repository);
 
@@ -139,9 +163,9 @@ namespace ApiProject.Test
                 OperationDate = operationDate,
             });
 
-            Log.Verify(_ => _.Error("Operation with same values already exists."));
+            Log.Verify(_ => _.Debug("Created"));
 
-            Assert.IsFalse(res);
+            Assert.IsTrue(res);
         }
 
         [Fact]

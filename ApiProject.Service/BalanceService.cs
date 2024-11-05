@@ -83,7 +83,7 @@ namespace ApiProject.Service
                 ConsolidateByProduct(consolidationDate, operations);
                 ConsolidateBySeller(consolidationDate, operations);
 
-                _repo.SaveChanges();
+                await _repo.SaveChangesAsync();
 
                 consolidationDate = consolidationDate.AddDays(1);
 

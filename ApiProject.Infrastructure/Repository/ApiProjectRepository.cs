@@ -92,14 +92,9 @@ namespace ApiProject.Infrastructure.Repository
             entities.AddRange(entity);
         }
 
-        public void SaveChanges(bool clearChanges = false)
+        public Task<int> SaveChangesAsync()
         {
-            Context.SaveChanges();
-
-            if (clearChanges)
-            {
-                Context.ChangeTracker.Clear();
-            }
+            return Context.SaveChangesAsync();
         }
     }
 }

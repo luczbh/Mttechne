@@ -12,6 +12,6 @@ namespace ApiProject.Infrastructure.Repository
         Task<List<T>> FindByAsync<T>(Expression<Func<T, bool>> predicate, params Expression<Func<T, object>>[] includeProperties) where T : DbEntity;
         void Add<T>(T entity) where T : DbEntity;
         void AddRange<T>(IEnumerable<T> entity) where T : DbEntity;
-        void SaveChanges(bool clearChanges = false);
+        Task<int> SaveChangesAsync();
     }
 }

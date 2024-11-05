@@ -50,8 +50,7 @@ namespace ApiProject.Service
                 return false;
             }
 
-
-            if (_repo.Any<Operation>(c => c.ClientId == item.ClientId && c.ProductId == item.ProductId && c.OperationDate == item.OperationDate && c.OperationType == item.OperationType))
+            if (item.ClientId.HasValue && _repo.Any<Operation>(c => c.ClientId == item.ClientId && c.ProductId == item.ProductId && c.OperationDate == item.OperationDate && c.OperationType == item.OperationType && c.Value == item.Value))
             {
                 _log.Error("Operation with same values already exists.");
 
@@ -68,7 +67,7 @@ namespace ApiProject.Service
                 OperationDate = item.OperationDate
             });
 
-            _repo.SaveChanges();
+            await _repo.SaveChangesAsync();
 
             _log.Debug("Created");
 
@@ -90,7 +89,7 @@ namespace ApiProject.Service
 
             _repo.Delete(dbItem);
 
-            _repo.SaveChanges();
+            await _repo.SaveChangesAsync();
 
             _log.Debug("Deleted");
 
