@@ -47,15 +47,17 @@ Os dados das tabelas que não fazem parte do domínio (clientes/produtos/vendedo
   > usado para fazer a consolidação das operações `faz a consolidação de todos os dias desde a última vez que foi feita, na primeira execução faz apenas do dia anterior e do dia atual.`
 
 - Para os relatórios temos alguns endpoints
-  >a data nestes endpoints deve ser informada no formato `dd-MM-yyyy`
+  A data nestes endpoints deve ser informada no formato `dd-MM-yyyy`
+> [!NOTE]
+> Faltou incluir a paginação nos endpoints com listas.
   
 - /v1/Balance/{date}
   > Retorna os dados consolidados geral sem as operações 
 - /v1/Balance/{date}/ByClients
-  > Retorna os dados consolidados com as operações dos clientes
+  > Retorna os dados consolidados com as operações dos clientes 
 
 - /v1/Balance/{date}/ByProducts
-  > Retorna os dados consolidados com as operações por produtos
+  > Retorna os dados consolidados com as operações por produtos 
 
 - /v1/Balance/{date}/BySellers
   > Retorna os dados consolidados com as operações por vendedores
