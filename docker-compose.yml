@@ -1,7 +1,23 @@
+version: '3.4'
+
 services:
-  sql-server:
+  apiproject:
+    image: ${DOCKER_REGISTRY-}apiproject
+    container_name: api
+    build:
+      context: .
+      dockerfile: ApiProject/Dockerfile
+    ports:
+      - "8080:8080"
+      - "8081:8081"
+    depends_on:
+      - sqlserver
+    networks:
+      - productnetwork
+    restart: on-failure
+
+  sqlserver:
     image: mcr.microsoft.com/mssql/server:2019-latest
-    container_name: sql-container
     environment:
       ACCEPT_EULA: "Y"
       SA_PASSWORD: "sapass@#SER239487"
@@ -12,17 +28,8 @@ services:
       - C:\temp\sqlserver:/var/opt/mssql/data
     expose:
       - "1433"
+    networks:
+      - productnetwork
 
-  apiproject:
-    image: ${DOCKER_REGISTRY-}apiproject
-    container_name: api-container
-    build:
-      context: .
-      dockerfile: ApiProject/Dockerfile
-    ports:
-      - "8080:8080"
-    depends_on:
-      - sql-server
-    links:   
-      - sql-server 
-
+networks:
+  productnetwork:
