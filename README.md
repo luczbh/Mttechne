@@ -8,7 +8,17 @@ Feito utilizando `CodeFirst DDD contém testes e boas práticas de desenvolvimen
 Consiste em um sistema para controlar o fluxo de caixa, com lançamentos de operações e conciliação diária com o relatório dos mesmos.
 
 ## Executando
-Para executar a aplicação basta usar o docker-compose -d
+Para executar a aplicação depois de fazer o download do fonte 
+> Criar a pasta `c:\temp\sqlserver` pois é onde serão armazenados os arquivos do banco de dados
+
+Depois ao diretório raiz onde esta aplicação abra o prompt de comando e digite
+
+> docker-compose up --build
+
+A aplicação será executada e estará disponível nas urls abaixo:
+
+* http://localhost:8080/swagger/index.html
+* https://localhost:8081/swagger/index.html
 
 ## Escolha das tecnologias
 - SqlServer foi utilizado para termos integridade dos dados com os clientes/produtos/vendedores.
@@ -16,6 +26,16 @@ Para executar a aplicação basta usar o docker-compose -d
 ``
 Os dados das tabelas que não fazem parte do domínio (clientes/produtos/vendedores) devem ser carregados através de messageria, ou seja, teriamos outros serviços que fazem o CRUD destes dados e receberiamos as atualizações com os dados basicos utilizados.
 ``
+## Arquitetura
+
+Arquitetura proposta como sendo a ideal para resolver o requisito.
+
+![Proposta](https://github.com/luczbh/Mttechne/blob/main/ArqImages/Arquitetura%20Proposta.png)
+
+
+Arquitetura utilizada para fins de prova de conceito
+![Implementada]([https://github.com/luczbh/Mttechne/blob/main/ArqImages/Arquitetura%20Proposta.png](https://github.com/luczbh/Mttechne/blob/main/ArqImages/Arquitetura%20Implementada.png))
+
 
 ## Outras tecnologias que poderiam ser usadas
 - Fluent Validation
