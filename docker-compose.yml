@@ -1,0 +1,28 @@
+services:
+  sql-server:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    container_name: sql-container
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "sapass@#SER239487"
+      MSSQL_PID: Express
+    ports:
+      - "1433:1433"
+    volumes:
+      - C:\temp\sqlserver:/var/opt/mssql/data
+    expose:
+      - "1433"
+
+  apiproject:
+    image: ${DOCKER_REGISTRY-}apiproject
+    container_name: api-container
+    build:
+      context: .
+      dockerfile: ApiProject/Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      - sql-server
+    links:   
+      - sql-server 
+
