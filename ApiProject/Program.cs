@@ -23,10 +23,13 @@ builder.Services.AddSerilog(Log.Logger);
 builder.Services.AddDbContext<IApiProjectContext, OperationDBContext>(
         options => options.UseSqlServer("name=ConnectionStrings:OperationDatabase"));
 
+Log.Debug("Added Context");
+
 builder.Services.AddScoped<IOperationService, OperationService>();
 builder.Services.AddScoped<IBalanceService, BalanceService>();
 builder.Services.AddScoped<IApiProjectRepository, ApiProjectRepository>();
 
+Log.Debug("Added Services");
 
 builder.Services.AddControllers();
 
@@ -45,12 +48,10 @@ using (var scope = app.Services.CreateScope())
     db.Database.Migrate();
 }
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+Log.Debug("Migrated.");
+
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
 
